@@ -1,0 +1,19 @@
+{
+  "name": "quantumshield-ai",
+  "version": "3.0.0",
+  "description": "QuantumShield AI — interactive Hybrid Quantum-Classical vision-intelligence platform built on the HQC-CNN paper (4-qubit VQC for robust traffic-sign recognition).",
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "quantum-machine-learning",
+    "variational-quantum-circuit",
+    "computer-vision",
+    "adversarial-robustness",
+    "hqc-cnn"
+  ],
+  "author": "Sayan Ghosh",
+  "license": "MIT"
+}

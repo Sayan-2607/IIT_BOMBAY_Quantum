@@ -1,0 +1,10 @@
+# Deploy QuantumShield AI on Netlify — drag the folder to app.netlify.com/drop
+[build]
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # webcam (getUserMedia) needs a secure context; Netlify serves HTTPS by default
+    Permissions-Policy = "camera=(self)"

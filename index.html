@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuantumShield AI — Hybrid Quantum-Classical Vision Intelligence</title>
+  <meta name="description" content="QuantumShield AI — an interactive platform built on the HQC-CNN paper: 4-qubit variational quantum circuits for robust traffic-sign recognition. 98.3% GTSRB, +8.2% noise robustness, 34% fewer parameters than ResNet-50." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader__core"><span></span><span></span><span></span></div>
+    <p class="mono">INITIALIZING QUANTUM RUNTIME</p>
+  </div>
+
+  <!-- LANDING COVER (public front door) -->
+  <div class="cover" id="cover">
+    <canvas id="coverCanvas" class="cover__canvas"></canvas>
+    <button class="cover__skip mono" id="coverSkip">skip →</button>
+    <div class="cover__inner">
+      <p class="cover__eyebrow mono"><span></span>HQC-CNN · IIT BOMBAY CMInDS · LIVE</p>
+      <h1 class="cover__title">QuantumShield<em>AI</em></h1>
+      <p class="cover__tag">The first browser-native platform where a real <strong>4-qubit quantum circuit</strong> runs live on what your camera sees — quantum-hardened computer vision you can actually <em>watch</em> think.</p>
+      <button class="cover__cta" id="coverEnter">Enter the Live Platform →</button>
+      <div class="cover__tickers">
+        <div class="tk"><div class="tk__v mono" id="tkGates">0</div><div class="tk__l">QUANTUM GATES EXECUTED</div></div>
+        <div class="tk"><div class="tk__v mono" id="tkQ">0.000</div><div class="tk__l">LIVE ENTANGLEMENT Q</div></div>
+        <div class="tk"><div class="tk__v mono" id="tkShots">0</div><div class="tk__l">MEASUREMENT SHOTS</div></div>
+      </div>
+      <p class="cover__note mono">runs entirely in your browser · no install · webcam optional</p>
+    </div>
+  </div>
+
+  <!-- GUIDED TOUR -->
+  <div class="tour" id="tour">
+    <div class="tour__ring" id="tourRing"></div>
+    <div class="tour__box" id="tourBox"></div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand__mark"><span></span><span></span><span></span><span></span></div>
+      <div>
+        <strong>QuantumShield<em>AI</em></strong>
+        <small class="mono">HQC-CNN · v2.6</small>
+      </div>
+    </div>
+    <nav class="side-nav">
+      <a href="#" data-view="overview" class="on"><i>◈</i>Overview</a>
+      <span class="side-cat">VISION INTELLIGENCE</span>
+      <a href="#" data-view="analyzer"><i>◎</i>Vision Analyzer</a>
+      <a href="#" data-view="adversarial"><i>⚠</i>Adversarial Simulator</a>
+      <a href="#" data-view="features"><i>⊕</i>Feature Explorer</a>
+      <span class="side-cat">LIVE QUANTUM</span>
+      <a href="#" data-view="lab"><i>⚛</i>Quantum Lab <em class="nav-new">LIVE</em></a>
+      <a href="#" data-view="ibmq"><i>☁</i>IBM Quantum <em class="nav-new">NEW</em></a>
+      <span class="side-cat">QUANTUM CORE</span>
+      <a href="#" data-view="circuit"><i>⟨ψ⟩</i>Circuit Visualizer</a>
+      <a href="#" data-view="benchmark"><i>▤</i>Robustness Benchmark</a>
+      <a href="#" data-view="research"><i>∿</i>Research Dashboard</a>
+    </nav>
+    <a class="side-repo mono" href="https://github.com/Sayan-2607/IIT_BOMBAY_Quantum" target="_blank" rel="noopener">↗ source &amp; weights</a>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main" id="main">
+    <header class="topbar">
+      <button class="burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
+      <div class="topbar__title mono">Hybrid Quantum-Classical Vision Platform</div>
+      <button class="tour-btn mono" id="tourBtn" title="Take the tour">? tour</button>
+      <div class="topbar__pill mono"><span class="live"></span>4-QUBIT VQC ONLINE</div>
+    </header>
+
+    <!-- ===== OVERVIEW ===== -->
+    <section class="view active" id="view-overview">
+      <div class="hero">
+        <canvas id="heroCanvas" class="hero__canvas"></canvas>
+        <div class="hero__copy">
+          <p class="eyebrow mono"><span></span>HQC-CNN · IIT BOMBAY CMInDS</p>
+          <h1>Quantum-Enhanced<br>Perception, <em>Hardened.</em></h1>
+          <p class="hero__lede">
+            A hybrid quantum-classical CNN that embeds a 4-qubit, depth-3
+            variational circuit mid-stream of a VGG backbone — disrupting
+            adversarial gradients and enriching features in a 16-dimensional
+            Hilbert space, with <strong>34% fewer parameters</strong> than ResNet-50.
+          </p>
+          <div class="hero__cta">
+            <a href="#" data-view="adversarial" class="btn btn--solid">Test Robustness</a>
+            <a href="#" data-view="circuit" class="btn btn--ghost">Inspect the Circuit</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-grid" id="statGrid"></div>
+
+      <div class="panel">
+        <div class="panel__head"><h3>Benchmark Snapshot</h3><span class="mono">GTSRB · 43 classes · n=12,630</span></div>
+        <div class="chart-box"><canvas id="chartBenchmark"></canvas></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel__head"><h3>HQC-CNN Architecture</h3><span class="mono">Fig 1 · three-stage pipeline</span></div>
+        <div class="pipeline" id="pipeline"></div>
+      </div>
+    </section>
+
+    <!-- ===== VISION ANALYZER ===== -->
+    <section class="view" id="view-analyzer">
+      <div class="view-head">
+        <h2>Quantum Vision Analyzer</h2>
+        <p>Sample, upload, or stream a live webcam feed. The ⟨Z⟩ feature vector and entanglement are measured <strong>live</strong> from your pixels through the real 4-qubit VQC.</p>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel__head"><h3>Input</h3></div>
+          <canvas id="anStage" width="320" height="320" class="stage"></canvas>
+          <video id="anVideo" playsinline muted style="display:none"></video>
+          <div class="samples" id="anSamples"></div>
+          <div class="input-actions">
+            <label class="upload mono">⬆ upload<input type="file" id="anFile" accept="image/*" hidden /></label>
+            <button class="upload mono" id="anCam">▶ webcam</button>
+          </div>
+          <button class="btn btn--solid full" id="anRun">Run Inference</button>
+        </div>
+        <div class="panel">
+          <div class="panel__head"><h3>Live Quantum Features</h3><span class="mono">real ⟨Z⟩ · MW Q <b id="anMw" style="color:var(--cyan)">—</b></span></div>
+          <canvas id="anZ" class="z-canvas"></canvas>
+          <div id="anResults" class="results-empty mono">› awaiting inference…</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ADVERSARIAL SIMULATOR ===== -->
+    <section class="view" id="view-adversarial">
+      <div class="view-head">
+        <h2>Adversarial Attack Simulator</h2>
+        <p>Apply an attack and watch where the classical model breaks — and where quantum features hold.</p>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel__head"><h3>Attacked Input</h3></div>
+          <canvas id="advStage" width="320" height="320" class="stage"></canvas>
+          <div class="samples" id="advSamples"></div>
+          <div class="control">
+            <label class="mono">Attack</label>
+            <select id="advAttack" class="select">
+              <option>FGSM</option><option>PGD</option><option>Gaussian</option>
+              <option>Occlusion</option><option>Patch</option>
+            </select>
+          </div>
+          <div class="control">
+            <label class="mono">Strength <b id="advEpsVal">ε 0.10</b></label>
+            <input type="range" id="advEps" min="0" max="0.30" step="0.01" value="0.10" class="range" />
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel__head"><h3>Robustness Readout</h3></div>
+          <div id="advReadout"></div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel__head"><h3>FGSM Robustness</h3><span class="mono">accuracy vs ε</span></div>
+          <div class="chart-box sm"><canvas id="chartFGSM"></canvas></div>
+        </div>
+        <div class="panel">
+          <div class="panel__head"><h3>Gaussian-Noise Robustness</h3><span class="mono">accuracy vs σ</span></div>
+          <div class="chart-box sm"><canvas id="chartNoise"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURE EXPLORER ===== -->
+    <section class="view" id="view-features">
+      <div class="view-head">
+        <h2>Quantum Feature Space Explorer</h2>
+        <p>t-SNE projection of learned features. Quantum encoding produces compact, separable clusters.</p>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel__head"><h3>Classical Features</h3><span class="mono sil bad">Silhouette 0.412</span></div>
+          <canvas id="fxClassical" class="scatter"></canvas>
+          <p class="cap">Overlapping clusters — ambiguous class boundaries.</p>
+        </div>
+        <div class="panel">
+          <div class="panel__head"><h3>Hybrid Quantum Features</h3><span class="mono sil good">Silhouette 0.681</span></div>
+          <canvas id="fxHybrid" class="scatter"></canvas>
+          <p class="cap">Compact, well-separated clusters — <b>+65.3%</b> separability.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <b>Why it matters.</b> The 4-qubit VQC computes inner products in a 2⁴=16-dimensional
+        Hilbert space, implicitly performing non-linear kernel separations inaccessible to a
+        classical layer of equivalent parameter count. The Silhouette jump directly explains
+        both the accuracy and robustness gains.
+      </div>
+    </section>
+
+    <!-- ===== QUANTUM LAB (LIVE) ===== -->
+    <section class="view" id="view-lab">
+      <div class="view-head">
+        <h2>Quantum Perception Lab <span class="live-badge mono"><span class="live"></span>REAL-TIME</span></h2>
+        <p>A real 4-qubit statevector simulator runs <strong>every frame</strong> in your browser. Drive it with a sample sign, an upload, or a live webcam — and watch the actual quantum state, Bloch vectors and entanglement respond instantly.</p>
+      </div>
+
+      <div class="lab-grid">
+        <!-- input + source -->
+        <div class="panel lab-input">
+          <div class="panel__head"><h3>Encoding Source</h3></div>
+          <canvas id="labStage" width="240" height="240" class="stage"></canvas>
+          <video id="labVideo" playsinline muted style="display:none"></video>
+          <div class="samples" id="labSamples"></div>
+          <div class="input-actions">
+            <label class="upload mono">⬆ upload<input type="file" id="labFile" accept="image/*" hidden /></label>
+            <button class="upload mono" id="labCam">▶ live webcam</button>
+          </div>
+          <div class="lab-tele" id="labTele"></div>
+        </div>
+
+        <!-- statevector + Z -->
+        <div class="panel">
+          <div class="panel__head"><h3>Live Statevector</h3><span class="mono">16 amplitudes · colour = phase</span></div>
+          <canvas id="labStatevector" class="sv-canvas"></canvas>
+          <div class="panel__head" style="margin-top:14px"><h3>Measurement ⟨Z⟩</h3></div>
+          <canvas id="labZ" class="z-canvas"></canvas>
+        </div>
+
+        <!-- bloch + gauge -->
+        <div class="panel">
+          <div class="panel__head"><h3>Qubit Bloch Vectors</h3></div>
+          <div class="bloch-row">
+            <canvas id="labBloch0" class="bloch"></canvas>
+            <canvas id="labBloch1" class="bloch"></canvas>
+            <canvas id="labBloch2" class="bloch"></canvas>
+            <canvas id="labBloch3" class="bloch"></canvas>
+          </div>
+          <canvas id="labGauge" class="gauge-canvas"></canvas>
+        </div>
+      </div>
+
+      <!-- variational controls -->
+      <div class="panel">
+        <div class="panel__head">
+          <h3>Variational Parameters &amp; Entanglement</h3>
+          <div class="lab-ctrl-actions">
+            <button class="ent-btn" data-lab-ent="E1">ℓ1</button>
+            <button class="ent-btn" data-lab-ent="E2">ℓ2</button>
+            <button class="ent-btn" data-lab-ent="E3">ℓ3</button>
+            <button class="mini-btn" id="labRandom">⟳ randomize θ</button>
+            <button class="mini-btn" id="labReset">reset</button>
+          </div>
+        </div>
+        <p class="lab-hint mono">Drag any of the 24 trainable θ — the state, Bloch vectors, entanglement and kernel update live.</p>
+        <div class="thetas" id="labThetas"></div>
+      </div>
+
+      <!-- quantum kernel -->
+      <div class="panel">
+        <div class="panel__head"><h3>Real Quantum Kernel</h3><span class="mono">K(i,j) = |⟨ψ_i|ψ_j⟩|²</span></div>
+        <p class="lab-hint mono">Fidelity between every pair of signs in the current circuit — the basis of quantum kernel separability. Brighter = more similar.</p>
+        <div class="kernel-host" id="labKernel"></div>
+      </div>
+
+      <div class="callout">
+        <b>This is the real thing.</b> Every number here comes from applying genuine quantum
+        gates (H, Ry, Rz, CNOT) to a 16-dimensional complex statevector and measuring it — the
+        same operations the HQC-CNN performs, executed live in your browser with zero backend.
+      </div>
+    </section>
+
+    <!-- ===== IBM QUANTUM PLATFORM ===== -->
+    <section class="view" id="view-ibmq">
+      <div class="view-head">
+        <h2>IBM Quantum Platform <span class="nav-new" style="font-size:10px;vertical-align:middle">INTEGRATION</span></h2>
+        <p>An AI-powered Quantum Intelligence layer combining IBM Quantum, Quantum Machine Learning and Explainable AI — hybrid quantum-classical workflows for optimization, cybersecurity, healthcare and predictive analytics. Export your VQC to real hardware, estimate resources, and run noise-aware simulations with error mitigation.</p>
+      </div>
+
+      <div class="panel">
+        <div class="panel__head"><h3>Platform Capabilities</h3>
+          <div class="cap-legend mono"><span class="dot-live"></span>live now <span class="dot-acct"></span>IBM account <span class="dot-road"></span>roadmap</div>
+        </div>
+        <div class="cap-grid" id="ibmCaps"></div>
+      </div>
+
+      <div class="two-col">
+        <!-- QASM export -->
+        <div class="panel">
+          <div class="panel__head"><h3>OpenQASM Export</h3>
+            <div class="lab-ctrl-actions">
+              <button class="ent-btn" data-ibm-ent="E1">ℓ1</button>
+              <button class="ent-btn" data-ibm-ent="E2">ℓ2</button>
+              <button class="ent-btn" data-ibm-ent="E3">ℓ3</button>
+            </div>
+          </div>
+          <div class="control"><label class="mono">Encoding sign</label><select id="ibmSign" class="select"></select></div>
+          <pre class="code-block" id="ibmQasm"></pre>
+          <div class="input-actions">
+            <button class="mini-btn" id="ibmCopyQasm">⧉ copy QASM</button>
+            <button class="mini-btn" id="ibmDownloadQasm">⬇ vqc.qasm</button>
+          </div>
+        </div>
+
+        <!-- resources -->
+        <div class="panel">
+          <div class="panel__head"><h3>Quantum Resource Estimation</h3><span class="mono">live from circuit</span></div>
+          <div class="res-grid" id="ibmRes"></div>
+          <div class="callout" style="margin:18px 0 0">
+            <b>Hardware-ready.</b> The exported circuit transpiles to any IBM backend. Toggle entanglement layers above and watch gate count, depth and CNOT count update live.
+          </div>
+        </div>
+      </div>
+
+      <!-- live quantum job execution -->
+      <div class="panel">
+        <div class="panel__head"><h3>Live Quantum Job Execution <span class="live-badge mono"><span class="live"></span>STREAMING</span></h3>
+          <div class="lab-ctrl-actions">
+            <button class="mini-btn" id="ibmRunToggle">⏸ pause stream</button>
+            <button class="ent-btn on" id="ibmZNE">Zero-Noise Extrapolation</button>
+          </div>
+        </div>
+
+        <div class="job-bar">
+          <div class="job-status" id="ibmJobStatus"></div>
+          <div class="job-progress"><i id="ibmProgressBar"></i></div>
+        </div>
+        <div class="job-tele" id="ibmTele"></div>
+
+        <div class="two-col" style="margin-top:18px">
+          <div>
+            <div class="panel__head"><h3 style="font-size:14px">Measurement Histogram</h3><span class="mono">counts streaming · 16 outcomes</span></div>
+            <canvas id="ibmHistogram" class="hist-canvas"></canvas>
+            <div class="control" style="margin-top:14px"><label class="mono">Hardware noise level <b id="ibmNoiseVal">0.010</b></label>
+              <input type="range" id="ibmNoise" min="0" max="0.08" step="0.005" value="0.01" class="range" /></div>
+            <div class="control"><label class="mono">Shots per job</label>
+              <select id="ibmShots" class="select"><option>1024</option><option selected>4096</option><option>8192</option></select></div>
+          </div>
+          <div>
+            <div id="ibmNoiseOut"></div>
+            <div class="panel__head" style="margin-top:14px"><h3 style="font-size:14px">Ideal ⟨Z⟩</h3></div>
+            <canvas id="ibmZIdeal" class="z-canvas"></canvas>
+            <div class="panel__head" style="margin-top:12px"><h3 style="font-size:14px">Live noisy ⟨Z⟩</h3></div>
+            <canvas id="ibmZNoisy" class="z-canvas"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- qiskit + connection -->
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel__head"><h3>Run on IBM Quantum (Qiskit)</h3>
+            <select id="ibmBackend" class="select" style="width:auto"><option>ibm_brisbane</option><option>ibm_kyoto</option><option>ibm_osaka</option><option>ibmq_qasm_simulator</option></select>
+          </div>
+          <pre class="code-block" id="ibmSnippet"></pre>
+          <button class="mini-btn" id="ibmCopySnippet">⧉ copy Qiskit code</button>
+        </div>
+        <div class="panel">
+          <div class="panel__head"><h3>Connect Hardware</h3></div>
+          <div class="connect">
+            <label class="mono">IBM Quantum API token</label>
+            <input type="password" placeholder="paste token to enable live jobs" disabled class="select" />
+            <p class="connect__note">Live hardware execution runs server-side for security. Add your token via a backend service, then this panel submits jobs through Qiskit Runtime. Get a free token at <b>quantum.ibm.com</b>.</p>
+            <div class="connect__steps mono">
+              <span>1 · export QASM →</span><span>2 · transpile to backend →</span><span>3 · Sampler.run(shots) →</span><span>4 · stream results back</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <b>What's real in this build:</b> the QASM export, resource estimation, and the noise + ZNE simulation all run live in your browser on the real VQC. Cloud job execution on physical IBM QPUs needs an IBM Quantum account and a small backend to hold your token — the Qiskit snippet is exactly what runs it.
+      </div>
+    </section>
+
+    <!-- ===== CIRCUIT VISUALIZER ===== -->
+    <section class="view" id="view-circuit">
+      <div class="view-head">
+        <h2>Variational Quantum Circuit</h2>
+        <p>The 4-qubit, depth-3 VQC (Fig 2): Hadamard superposition → Ry/Rz data encoding → variational rotations with asymmetric CNOT entanglement → Pauli-Z measurement.</p>
+      </div>
+      <div class="panel">
+        <div class="panel__head">
+          <h3>Toggle Entanglement Layers</h3>
+          <div class="ent-controls">
+            <button class="ent-btn" data-ent="E1">ℓ1 · nearest</button>
+            <button class="ent-btn" data-ent="E2">ℓ2 · long-range</button>
+            <button class="ent-btn" data-ent="E3">ℓ3 · nearest</button>
+          </div>
+        </div>
+        <div class="circuit-host" id="circuitHost"></div>
+        <div class="legend-row mono">
+          <span><i class="sw g-enc"></i>data encoding Ry/Rz(f)</span>
+          <span><i class="sw g-var"></i>trainable Ry/Rz(θ)</span>
+          <span><i class="sw g-h"></i>Hadamard</span>
+          <span><i class="sw g-meas"></i>Pauli-Z measure</span>
+        </div>
+      </div>
+      <div class="stat-grid four">
+        <div class="stat"><div class="stat__v">4</div><div class="stat__l">Qubits</div></div>
+        <div class="stat"><div class="stat__v">24</div><div class="stat__l">Trainable Params</div></div>
+        <div class="stat"><div class="stat__v">0.85</div><div class="stat__l">MW Entanglement Q̄</div></div>
+        <div class="stat"><div class="stat__v">0.031</div><div class="stat__l">Expressibility ε</div></div>
+      </div>
+      <div class="callout">
+        <b>Asymmetric entanglement, by design.</b> A quantum architecture search across linear,
+        circular, all-to-all and asymmetric patterns found the asymmetric CNOT layout best
+        trades expressibility against gradient trainability — beating all-to-all despite slightly
+        lower entanglement, because its gradient variance is 3.2× lower (barren-plateau avoidance).
+      </div>
+      <div class="panel">
+        <div class="panel__head"><h3>Entanglement Pattern Search</h3><span class="mono">Ablation A3</span></div>
+        <table class="data-table" id="entangleTable"></table>
+      </div>
+    </section>
+
+    <!-- ===== BENCHMARK ===== -->
+    <section class="view" id="view-benchmark">
+      <div class="view-head">
+        <h2>Robustness Benchmark</h2>
+        <p>HQC-CNN versus LeNet-5, VGG-16, ResNet-50, ViT-B/16 and a quantum-only baseline.</p>
+      </div>
+      <div class="panel">
+        <div class="panel__head"><h3>GTSRB Leaderboard</h3><span class="mono">★ significant vs all baselines (McNemar, p&lt;0.002)</span></div>
+        <table class="data-table" id="benchTable"></table>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel__head"><h3>Parameter Efficiency</h3><span class="mono">log scale</span></div>
+          <div class="chart-box sm"><canvas id="chartParams"></canvas></div>
+        </div>
+        <div class="panel">
+          <div class="panel__head"><h3>Multi-Metric Profile</h3></div>
+          <div class="chart-box sm"><canvas id="chartRadar"></canvas></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel__head"><h3>LISA Transfer Generalization</h3><span class="mono">20-epoch fine-tune from GTSRB</span></div>
+        <table class="data-table" id="lisaTable"></table>
+      </div>
+    </section>
+
+    <!-- ===== RESEARCH ===== -->
+    <section class="view" id="view-research">
+      <div class="view-head">
+        <h2>Research Dashboard</h2>
+        <p>Training dynamics, ablations, compute profile and the full hyperparameter configuration.</p>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel__head"><h3>Validation Accuracy</h3><span class="mono">100 epochs · restarts @25/50/75</span></div>
+          <div class="chart-box sm"><canvas id="chartTrainAcc"></canvas></div>
+        </div>
+        <div class="panel">
+          <div class="panel__head"><h3>Training Loss</h3><span class="mono">gap 0.03 vs 0.05</span></div>
+          <div class="chart-box sm"><canvas id="chartTrainLoss"></canvas></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel__head"><h3>Quantum Layer Placement</h3><span class="mono">Ablation A1</span></div>
+        <div class="chart-box sm"><canvas id="chartAblation"></canvas></div>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel__head"><h3>Computational Profile</h3><span class="mono">A100 80GB</span></div>
+          <table class="data-table" id="computeTable"></table>
+        </div>
+        <div class="panel">
+          <div class="panel__head"><h3>Hyperparameters</h3><span class="mono">Table VI</span></div>
+          <table class="data-table hp" id="hyperTable"></table>
+        </div>
+      </div>
+      <footer class="foot mono">
+        <span>HQC-CNN · Sayan Ghosh · KIIT / IIT Bombay CMInDS</span>
+        <a href="https://github.com/Sayan-2607/IIT_BOMBAY_Quantum" target="_blank" rel="noopener">github.com/Sayan-2607/IIT_BOMBAY_Quantum ↗</a>
+      </footer>
+    </section>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
